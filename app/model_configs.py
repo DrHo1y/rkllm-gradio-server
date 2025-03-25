@@ -39,7 +39,7 @@ model_configs = {
             """
             },
         "models": {
-            "Qwen2.5-Coder-3B-Instruct-w8w8": {"filename": "Qwen2.5-Coder-3B-Instruct-w8w8.rkllm"}
+            "Qwen2.5-Coder-3B-Instruct-w8w8-For-clear-code": {"filename": "Qwen2.5-Coder-3B-Instruct-w8w8.rkllm"}
         }
     },
     "Qwen2.5-Coder-3B-Instruct-w8w8": {

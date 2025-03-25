@@ -66,13 +66,16 @@ if __name__ == "__main__":
                 # Компонент для отображения HTML-ответа
                 output_html = gr.HTML(label="Ответ LLM")
                 def process_txt2txt(input_text):
-                    return input_text
+                    html = input_text.replace("\t", "").replace("\n", "")
+                    result = f"<iframe srcdoc='{html}' width='100%' height='1000'></iframe>"
+                    return result
                 
                 submit_button.click(
                     process_txt2txt,
                     inputs=input_text,
                     outputs=output_html
                 )
+
             # with gr.TabItem("Txt2Mesh"):
             #     with gr.Row():    
             #         with gr.Column(scale=2):
