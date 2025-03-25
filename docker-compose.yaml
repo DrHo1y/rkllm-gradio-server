@@ -1,0 +1,27 @@
+services:
+  rkllm:
+    platform: linux/arm64/v8
+    container_name: rkllm
+    image: python:3.11.11
+    restart: always
+    privileged: true
+    volumes:
+      - ./app:/app
+      - ./cache/cache:/root/.cache
+      - ./cache/site-packages:/usr/local/lib/python3.11/site-packages
+      - ./offline_packages:/offline_packages
+      - ./ezrknn-llm:/ezrknn-llm
+    entrypoint: ./app/entrypoint.sh
+    ports:
+      - "8080:8080"
+    networks:
+      - apps
+networks:
+  apps:
+    name: apps
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.100.0.0/24"
+          gateway: "172.100.0.1"
