@@ -15,7 +15,7 @@ model_configs = {
             "Qwen2.5-3B-Instruct-w8w8": {"filename": "Qwen2.5-3B-Instruct-w8w8.rkllm"}
         }
     },
-    "Qwen2.5-Coder-3B-Instruct-w8w8": {
+    "Qwen2.5-Coder-3B-Instruct-w8w8-For-clear-code": {
         "base_config": {
             "st_model_id": "Qwen/Qwen2.5-14B-Instruct",
             "max_context_len": 128000,
@@ -37,6 +37,22 @@ model_configs = {
                     return a + b
                 ```
             """
+            },
+        "models": {
+            "Qwen2.5-Coder-3B-Instruct-w8w8": {"filename": "Qwen2.5-Coder-3B-Instruct-w8w8.rkllm"}
+        }
+    },
+    "Qwen2.5-Coder-3B-Instruct-w8w8": {
+        "base_config": {
+            "st_model_id": "Qwen/Qwen2.5-14B-Instruct",
+            "max_context_len": 128000,
+            "max_new_tokens": 8192,
+            "top_k": 5,
+            "top_p": 0.8,
+            "temperature": 0.2,
+            "repeat_penalty": 1.00,
+            "frequency_penalty": 0.2,
+            "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant"
             },
         "models": {
             "Qwen2.5-Coder-3B-Instruct-w8w8": {"filename": "Qwen2.5-Coder-3B-Instruct-w8w8.rkllm"}
