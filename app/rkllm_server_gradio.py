@@ -47,7 +47,7 @@ if __name__ == "__main__":
     # Create a Gradio interface
     with gr.Blocks(title="Chat with RKLLM") as chatRKLLM:
         available_models = available_models()
-        gr.Markdown("<div align='center'><font size='10'> Definitely Not Skynet </font></div>")
+        gr.Markdown("<div align='center'><font size='10'> RKLLM Chat </font></div>")
         with gr.Tabs():
             with gr.TabItem("Select Model"):
                 model_dropdown = gr.Dropdown(choices=available_models, label="Select Model", value="None", allow_custom_value=True)
@@ -57,30 +57,46 @@ if __name__ == "__main__":
                 txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages")
                 txt2txt.chatbot.height = "70vh"
                 txt2txt.chatbot.resizeable = True
-            with gr.TabItem("Txt2Mesh"):
-                with gr.Row():    
-                    with gr.Column(scale=2):
-                        txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages")
-                        txt2txt.chatbot.height = "70vh"
-                        txt2txt.chatbot.resizeable = True
-                    with gr.Column(scale=2):
-                        # Add the text box for 3D mesh input and button
-                        mesh_input = gr.Textbox(
-                            label="3D Mesh Input",
-                            placeholder="Paste your 3D mesh in OBJ format here...",
-                            lines=5,
-                        )
-                        visualize_button = gr.Button("Visualize 3D Mesh")
-                        output_model = gr.Model3D(
-                                    label="3D Mesh Visualization",
-                                    interactive=False,
-                                )
-                        # Link the button to the visualization function
-                        visualize_button.click(
-                            fn=apply_gradient_color,
-                            inputs=[mesh_input],
-                            outputs=[output_model]
-                            )
+            
+            with gr.TabItem("Txt2HTML"):
+                # Поле для ввода текста
+                input_text = gr.Textbox(label="Введите ваш запрос", placeholder="Введите текст...", lines=3)
+                # Кнопка отправки запроса
+                submit_button = gr.Button("Отправить")
+                # Компонент для отображения HTML-ответа
+                output_html = gr.HTML(label="Ответ LLM")
+                def process_txt2txt(input_text):
+                    return input_text
+                
+                submit_button.click(
+                    process_txt2txt,
+                    inputs=input_text,
+                    outputs=output_html
+                )
+            # with gr.TabItem("Txt2Mesh"):
+            #     with gr.Row():    
+            #         with gr.Column(scale=2):
+            #             txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages")
+            #             txt2txt.chatbot.height = "70vh"
+            #             txt2txt.chatbot.resizeable = True
+            #         with gr.Column(scale=2):
+            #             # Add the text box for 3D mesh input and button
+            #             mesh_input = gr.Textbox(
+            #                 label="3D Mesh Input",
+            #                 placeholder="Paste your 3D mesh in OBJ format here...",
+            #                 lines=5,
+            #             )
+            #             visualize_button = gr.Button("Visualize 3D Mesh")
+            #             output_model = gr.Model3D(
+            #                         label="3D Mesh Visualization",
+            #                         interactive=False,
+            #                     )
+            #             # Link the button to the visualization function
+            #             visualize_button.click(
+            #                 fn=apply_gradient_color,
+            #                 inputs=[mesh_input],
+            #                 outputs=[output_model]
+            #                 )
         print("\nNo model loaded yet!\n")
 
 
