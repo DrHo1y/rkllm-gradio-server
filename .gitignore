@@ -1,0 +1,7 @@
+*.rkllm
+models/
+__pycache__/
+ezrknn-llm/
+cache/
+offline_packages/*.whl
+core
