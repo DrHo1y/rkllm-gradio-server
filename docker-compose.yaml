@@ -1,8 +1,10 @@
 services:
   rkllm:
+    build:
+      context: .
+      dockerfile: Dockerfile
     platform: linux/arm64/v8
     container_name: rkllm
-    image: python:3.11.11
     restart: always
     privileged: true
     volumes:

@@ -25,7 +25,18 @@ model_configs = {
             "temperature": 0.2,
             "repeat_penalty": 1.00,
             "frequency_penalty": 0.2,
-            "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
+            "system_prompt": """
+                Ты — эксперт по программированию, и твоя задача — генерировать только рабочий код без каких-либо комментариев, объяснений или дополнительного текста. Вывод должен содержать исключительно код, который можно скопировать и использовать напрямую.
+
+                <описание задачи>
+
+                Пример:
+                Если требуется написать функцию на Python, которая суммирует два числа, то ответ должен быть таким:
+                ```
+                def sum(a, b):
+                    return a + b
+                ```
+            """
             },
         "models": {
             "Qwen2.5-Coder-3B-Instruct-w8w8": {"filename": "Qwen2.5-Coder-3B-Instruct-w8w8.rkllm"}
